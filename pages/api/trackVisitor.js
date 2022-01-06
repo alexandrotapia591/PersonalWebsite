@@ -15,8 +15,8 @@ export default (req, res) => {
   const visitorInfo = { ...req.body, ip };
 
   (async () => {
-    const { data: ipapi } = await axios.get('http://ip-api.com/json');
-    visitorInfo.ipapi = ipapi;
+    const { data: ipwhois } = await axios.get(`http://ipwhois.app/json/${ip}`);
+    visitorInfo.ipwhois = ipwhois;
 
     await axios.post(process.env.DB_URL + '/visitors.json', visitorInfo);
 
